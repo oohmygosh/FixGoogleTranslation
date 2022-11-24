@@ -111,7 +111,7 @@ func readFile(path string) ([]*Ip, error) {
 	file, err := os.Open(path)
 	if err != nil {
 		printRed("打开文件失败，请下载文件")
-		OpenUri("https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt")
+		OpenUri("https://raw.githubusercontent.com/hcfyapp/google-translate-cn-ip/main/ips.txt")
 		return result, err
 	}
 	reader := bufio.NewReader(file)
