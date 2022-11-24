@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	_ "embed"
 	"fmt"
 	"golang.org/x/text/encoding/simplifiedchinese"
 	"io"
@@ -21,18 +22,15 @@ type Ip struct {
 	ms int
 }
 
+//go:embed ips.txt
+var innerIps string
+
 func main() {
 	println("获取最新Ip")
 	ips, err := ReadTxtFormInternet("https://raw.githubusercontent.com/hcfyapp/google-translate-cn-ip/main/ips.txt")
 	if err != nil {
 		printRed("获取失败，读取本地文件")
 		ips, err = readFile("ips.txt")
-		if err != nil {
-			println("按任意键退出")
-			b := make([]byte, 1)
-			_, _ = os.Stdin.Read(b)
-			return
-		}
 	}
 	var wg sync.WaitGroup
 	wg.Add(len(ips))
@@ -110,9 +108,12 @@ func readFile(path string) ([]*Ip, error) {
 	var result []*Ip
 	file, err := os.Open(path)
 	if err != nil {
-		printRed("打开文件失败，请下载文件")
-		OpenUri("https://raw.githubusercontent.com/Ponderfly/GoogleTranslateIpCheck/master/src/GoogleTranslateIpCheck/GoogleTranslateIpCheck/ip.txt")
-		return result, err
+		println("没有找到ips.txt文件，使用内置IP")
+		after := strings.Split(innerIps, "\r\n")
+		for _, ip := range after {
+			result = append(result, &Ip{ip: ip, ms: 999})
+		}
+		return result, nil
 	}
 	reader := bufio.NewReader(file)
 	for {

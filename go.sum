@@ -1,2 +1,4 @@
+github.com/gonutz/rsrc v0.0.0-20180911104558-96f130112cb1 h1:JBZIm+g0SvPFkGCPmy56YuEbiOXGHcOJpXTlW+4Pj+E=
+github.com/gonutz/rsrc v0.0.0-20180911104558-96f130112cb1/go.mod h1:RlfulN6lLdBnR7EiTZBlgS0sD4Uv07qQHaxvNlVj/1A=
 golang.org/x/text v0.4.0 h1:BrVqGRd7+k1DiOgtnFvAkoQEWQvBc25ouMJM6429SFg=
 golang.org/x/text v0.4.0/go.mod h1:mrYo+phRRbMaCq/xk9113O4dZlRixOauAjOtrjsXDZ8=
